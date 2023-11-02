@@ -45,7 +45,6 @@ class WeatherScreen extends StatelessWidget {
         child: SafeArea(
           child: BlocBuilder<WeatherBloc, WeatherState>(
             builder: (context, state) {
-              print(state.runtimeType);
               if (state is WeatherLoadingState)
                 return LoadingView();
               else if (state is WeatherInitialState)

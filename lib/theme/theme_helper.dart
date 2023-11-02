@@ -34,31 +34,31 @@ class ThemeHelper {
 class TextThemes {
   static TextTheme textTheme(ColorScheme colorScheme) => TextTheme(
         bodyMedium: TextStyle(
-          color: appTheme.gray400,
+          color: Colors.black,
           fontSize: 15.fSize,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w400,
         ),
         bodySmall: TextStyle(
-          color: appTheme.gray400,
+          color: Colors.black,
           fontSize: 10.fSize,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w400,
         ),
         headlineLarge: TextStyle(
-          color: appTheme.blueGray900,
+          color: Colors.black,
           fontSize: 30.fSize,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w600,
         ),
         labelLarge: TextStyle(
-          color: appTheme.gray400,
+          color: Colors.black,
           fontSize: 12.fSize,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w500,
         ),
         titleSmall: TextStyle(
-          color: appTheme.gray500,
+          color: Colors.black,
           fontSize: 15.fSize,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w500,
@@ -77,9 +77,7 @@ class PrimaryColors {
   Color get blueGray900 => Color(0XFF2C2C2C);
 
   // Gray
-  Color get gray300 => Color(0XFFE4E4E4);
-  Color get gray400 => Color(0XFFC4C4C4);
-  Color get gray50 => Color(0XFFFCFCFC);
+  Color get gray400 => Color(0xFFC4C4C4);
   Color get gray500 => Color(0XFF9A9A9A);
   Color get gray5001 => Color(0xfff1f1f1);
 

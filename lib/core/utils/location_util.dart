@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:location/location.dart' as location_plugin;
 
@@ -7,25 +8,30 @@ class LocationUtil {
   static location_plugin.LocationData? get locationData => _locationData;
 
   static Future<void> init() async {
-    final location = location_plugin.Location();
+    try {
+      final location = location_plugin.Location();
 
-    var serviceEnabled = await location.serviceEnabled();
-    if (!serviceEnabled) {
-      serviceEnabled = await location.requestService();
+      var serviceEnabled = await location.serviceEnabled();
       if (!serviceEnabled) {
-        return;
+        serviceEnabled = await location.requestService();
+        if (!serviceEnabled) {
+          return;
+        }
       }
-    }
 
-    var permissionGranted = await location.hasPermission();
-    if (permissionGranted == location_plugin.PermissionStatus.denied) {
-      permissionGranted = await location.requestPermission();
-      if (permissionGranted != location_plugin.PermissionStatus.granted) {
-        return;
+      var permissionGranted = await location.hasPermission();
+      if (permissionGranted == location_plugin.PermissionStatus.denied) {
+        permissionGranted = await location.requestPermission();
+        if (permissionGranted != location_plugin.PermissionStatus.granted) {
+          return;
+        }
       }
-    }
 
-    _locationData = await location.getLocation();
+      _locationData = await location.getLocation();
+    } on PlatformException catch (err) {
+      print("Platform exception calling serviceEnabled(): $err");
+      init();
+    }
   }
 
   static Future<Map<String, double>?> addressToLatLng(String address) async {
